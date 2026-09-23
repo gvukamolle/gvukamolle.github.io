@@ -45,14 +45,13 @@ def render(data):
     duration = max(1, math.ceil(words / 160))
     date_label = f'{day.day} {MONTHS[day.month-1]}'
     return f'''<!doctype html>
-<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><meta name="theme-color" content="#f3f4f4" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#181d1c" media="(prefers-color-scheme: dark)"><title>Тише — сводка за {date_label} {day.year}</title><meta name="description" content="Короткая сводка важных событий России и мира. Факты, контекст и ссылки на источники. Без рекламы и кликбейта."><link rel="icon" href="./favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="./style.css"></head>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><meta name="theme-color" content="#f3f4f4" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#181d1c" media="(prefers-color-scheme: dark)"><title>новости. — сводка за {date_label} {day.year}</title><meta name="description" content="Сводка событий России и мира со ссылками на источники."><link rel="icon" href="./favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="./style.css"></head>
 <body><a class="skip" href="#news">К новостям</a>
-<header class="masthead"><div class="identity"><span class="brand">тише.</span><span class="tagline">Важное, без шума</span></div><span class="cadence"><span aria-hidden="true"></span>Раз в день</span></header>
+<header class="masthead"><div class="identity"><span class="brand">новости.</span></div><span class="cadence"><span aria-hidden="true"></span>Раз в день</span></header>
 <main class="page" id="news"><div class="edition"><div><p class="overline">Сводка за день · {day.year}</p><h1>{date_label}<span>.</span></h1></div><div class="edition-meta"><span class="reading">{count} событий · около {duration} мин</span><p>Россия и мир</p></div></div>
 <p class="freshness" id="freshness" hidden>Это выпуск за {date_label} {day.year}. Новая сводка пока не опубликована.</p>
 <div class="columns">{''.join(cols)}</div>
-<section class="ending" aria-label="Конец выпуска"><span class="end-mark" aria-hidden="true">✓</span><h2>На сегодня всё.</h2><p>Следующая сводка — завтра.<br>А пока можно вернуться к своим делам.</p></section>
-<footer class="footer"><p>Отбираем события, которые меняют жизнь людей, правила или картину мира. Краткие сводки подготовлены с помощью ИИ по указанным источникам. Заявления и прогнозы отделяем от установленных фактов.</p><div class="colophon"><strong>тише.</strong>Без рекламы и счётчиков</div></footer></main>
+<section class="ending" aria-label="Конец выпуска"><span class="end-mark" aria-hidden="true">✓</span><h2>На сегодня всё.</h2><p>Следующая сводка — завтра.<br>А пока можно вернуться к своим делам.</p></section></main>
 <script>const published = Date.parse({json.dumps(data['updated_at'])}); if (Date.now() - published > 36 * 60 * 60 * 1000) {{ document.getElementById('freshness').hidden = false; document.querySelector('.ending p').textContent = 'Дата этого выпуска указана вверху. Следующая сводка пока не опубликована.'; }}</script>
 </body></html>'''
 
